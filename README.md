@@ -1,1 +1,7 @@
-# sic-classification
+# Classification of company SIC codes
+ORBIS is a database that contains company-level financial data, and is often used to collect company covariates for economics research. While using this data for a project, I noticed that some of the companies did not have SIC codes denoting the industry of the company. Since my analyses often use industry fixed-effects or look at trends within specific industries, this meant that I had to exclude companies that I otherwise would've included in my models. While one could manually look up the industry code of a company, this is impractical for large datasets and time-consuming for small ones. ORBIS also contains decriptions of a company and its products, even in cases when the company lacks an industry code. Therefore, I build a program to classify company SIC codes using these descriptions. The final model has a #% accuracy, which allows for a good approximation of a company's SIC code when it is missing in the data.
+
+## Scraping SIC descriptions
+The first contribution of this project is a dataset of SIC descriptions. For the classification, I needed information about each industry to match to the company descriptions. I couldn't find a dataset that had text descriptions of the SIC industries, so I built a simple website scraper to extract the SIC descriptions from the OSHA website using the requests Python package. The code for this scraping can be found in the file "sic_scraper.py".
+
+## Method for matching company descriptions to industry codes
